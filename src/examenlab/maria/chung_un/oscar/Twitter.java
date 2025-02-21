@@ -8,6 +8,17 @@ package examenlab.maria.chung_un.oscar;
  *
  * @author LENOVO
  */
-public class Twitter {
+public class Twitter extends SocialClass {
+
+    public Twitter(String username) {
+        super(username);
+    }
+
+    @Override
+    public void timeline() {
+        for (String post : posts){
+            System.out.println(post);
+        }
+    }
     
 }

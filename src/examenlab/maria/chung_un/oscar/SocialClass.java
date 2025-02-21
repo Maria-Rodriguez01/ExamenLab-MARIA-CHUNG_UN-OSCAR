@@ -50,7 +50,6 @@ public abstract class SocialClass {
         }else {
             friends = String.join("\n", friend);
         }
-        timeline();
         return username + friends;
     }
 }

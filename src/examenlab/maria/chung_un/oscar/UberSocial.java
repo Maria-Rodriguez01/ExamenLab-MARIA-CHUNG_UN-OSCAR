@@ -12,31 +12,31 @@ import javax.swing.JOptionPane;
  * @author chung
  */
 public class UberSocial {
+
     ArrayList<SocialClass> redesSociales = new ArrayList<>();
-    
-    private SocialClass buscar(String username, int index){
-    
-    if (index> redesSociales.size()){
-        return null;
+
+    private SocialClass buscar(String username, int index) {
+
+        if (index > redesSociales.size()) {
+            return null;
+        }
+        if (redesSociales.get(index).username.equals(username)) {
+            return redesSociales.get(index);
+        }
+
+        return buscar(username, index + 1);
     }
-    if(redesSociales.get(index).username.equals(username)){
-       return redesSociales.get(index);
+
+    public SocialClass buscar(String username) {
+        return buscar(username, 0);
     }
-    
-    return buscar(username, index+1);
-    }
-    
-    public SocialClass buscar(String username){
-       return buscar(username,0);
-    }
-    
-    public void agregarCuenta(String username, String tipo){
-        if(buscar(username) == null){
-            if(tipo.equals("FACEBOOK")){
+
+    public void agregarCuenta(String username, String tipo) {
+        if (buscar(username) == null) {
+            if (tipo.equals("FACEBOOK")) {
                 /////FALTA////
 
-            }
-            else if(tipo.equals("TWITTER")){
+            } else if (tipo.equals("TWITTER")) {
                 //FALTA//
             }
         }
