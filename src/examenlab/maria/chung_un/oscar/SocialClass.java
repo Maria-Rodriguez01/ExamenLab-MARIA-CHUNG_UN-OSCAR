@@ -16,9 +16,9 @@ public abstract class SocialClass {
     String username;
     
     public SocialClass(String username){
-    this.username= username;
-    posts = new ArrayList<>();
-    friend = new ArrayList<>();
+        this.username= username;
+        posts = new ArrayList<>();
+        friend = new ArrayList<>();
     }
     
     public boolean addFriend(String user){
@@ -30,12 +30,27 @@ public abstract class SocialClass {
     }
     
     public void addPost(String msg){
-    posts.add(msg);
+        posts.add(msg);
     }
     
     public abstract void timeline();
     
     public void myProfile(){
-        //pending 
+        toString();
+    }
+    
+    @Override
+    public String toString() {
+        String friends = "";
+        
+        if (friend.size() > 10){
+            for (int i = 0; i < 10; i++) {
+                friends += "\n" + friend.get(i);
+            }
+        }else {
+            friends = String.join("\n", friend);
+        }
+        timeline();
+        return username + friends;
     }
 }
