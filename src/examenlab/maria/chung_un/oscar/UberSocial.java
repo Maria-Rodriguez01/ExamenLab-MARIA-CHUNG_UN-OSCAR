@@ -32,12 +32,13 @@ public class UberSocial {
     }
 
     public void agregarCuenta(String username, String tipo) {
-        if (buscar(username) == null) {
+        SocialClass usuario = buscar(username);
+        if (usuario == null) {
             if (tipo.equals("FACEBOOK")) {
-                /////FALTA////
+                redesSociales.add(new Facebook(username));
 
             } else if (tipo.equals("TWITTER")) {
-                //FALTA//
+                redesSociales.add(new Twitter(username));
             }
         }
     }
@@ -52,8 +53,8 @@ public class UberSocial {
     
     public void agregarAmigo(String user1, String user2){
         SocialClass usuario1 = buscar(user1),usuario2 = buscar(user2);
-        boolean resultado1 = usuario1 instanceof FaceBook;//false es twitter
-        boolean resultado2 = usuario2 instanceof FaceBook; //false es twitter
+        boolean resultado1 = usuario1 instanceof Facebook;//false es twitter
+        boolean resultado2 = usuario2 instanceof Facebook; //false es twitter
         
         if(usuario1!=null && usuario2!=null){
                 if((resultado1 && resultado2) || (!resultado1 && !resultado2)){
@@ -66,15 +67,17 @@ public class UberSocial {
         }
     
     public void agregarComment(String user, int postID, String autor, String comment){
-       SocialClass usuario = buscar(user);
+       SocialClass usuario =  buscar(user);
        
        if(usuario!=null){
-            boolean resultado = usuario instanceof FaceBook;
+            boolean resultado = usuario instanceof Facebook;
        
-       if(resultado){
+       if(resultado==true){
+       
        Comment comentario = new Comment(postID, autor, comment);
-       usuario.addComment(comentario);
+       ((Facebook)usuario).addComment(comentario);
        }
+       JOptionPane.showMessageDialog(null, "Cuenta no es de FaceBook", "Error", JOptionPane.ERROR_MESSAGE);
        }
        JOptionPane.showMessageDialog(null, "Usuario no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
        
