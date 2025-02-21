@@ -4,6 +4,8 @@
  */
 package examenlab.maria.chung_un.oscar;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author LENOVO
@@ -16,9 +18,7 @@ public class Twitter extends SocialClass {
 
     @Override
     public void timeline() {
-        for (String post : posts){
-            System.out.println(post);
-        }
+        JOptionPane.showMessageDialog(null, String.join("\n", posts));
     }
     
 }
