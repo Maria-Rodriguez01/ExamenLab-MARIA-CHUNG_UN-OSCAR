@@ -4,11 +4,9 @@
  */
 package examenlab.maria.chung_un.oscar;
 
-/**
- *
- * @author Maria Gabriela
- */
-public class ExamenLabMARIACHUNG_UNOSCAR {
+import javax.swing.*;
+
+public class ExamenLabMARIACHUNG_UNOSCAR extends JFrame{
 
     /**
      * @param args the command line arguments
