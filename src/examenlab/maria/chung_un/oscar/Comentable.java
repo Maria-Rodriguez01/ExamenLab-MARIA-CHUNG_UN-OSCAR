@@ -9,5 +9,5 @@ package examenlab.maria.chung_un.oscar;
  * @author Maria Gabriela
  */
 public interface Comentable {
-    boolean addComment();
+    boolean addComment(Comment comment);
 }
