@@ -17,14 +17,17 @@ public class UberSocial {
 
     private SocialClass buscar(String username, int index) {
 
-        if (index > redesSociales.size()) {
-            return null;
+        if ( !redesSociales.isEmpty()) {
+            if (index >= redesSociales.size()) {
+                return null;
+            }
+            if ( redesSociales.get(index).username.equals(username)) {
+                return redesSociales.get(index);
+            }
+            return buscar(username, index + 1);
         }
-        if (redesSociales.get(index).username.equals(username)) {
-            return redesSociales.get(index);
-        }
-
-        return buscar(username, index + 1);
+        return null;
+  
     }
 
     public SocialClass buscar(String username) {
@@ -53,45 +56,49 @@ public class UberSocial {
     
     public void agregarAmigo(String user1, String user2){
         SocialClass usuario1 = buscar(user1),usuario2 = buscar(user2);
-        boolean resultado1 = usuario1 instanceof Facebook;//false es twitter
-        boolean resultado2 = usuario2 instanceof Facebook; //false es twitter
         
         if(usuario1!=null && usuario2!=null){
-                if((resultado1 && resultado2) || (!resultado1 && !resultado2)){
-                    usuario1.addFriend(user2);
-                    usuario2.addFriend(user1);
-                }
-                return;
+            boolean resultado1 = usuario1 instanceof Facebook;//false es twitter
+            boolean resultado2 = usuario2 instanceof Facebook; //false es twitter
+        
+            
+            if((resultado1 && resultado2) || (!resultado1 && !resultado2)){
+                usuario1.addFriend(user2);
+                usuario2.addFriend(user1);
+            }
+            return;
             }
         JOptionPane.showMessageDialog(null, "Usuario no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
         }
     
     public void agregarComment(String user, int postID, String autor, String comment){
        SocialClass usuario =  buscar(user);
-       
-       if(usuario!=null){
+      
+        if (usuario != null) {
             boolean resultado = usuario instanceof Facebook;
-       
-       if(resultado==true){
-       
-       Comment comentario = new Comment(postID, autor, comment);
-       ((Facebook)usuario).addComment(comentario);
-       }
-       JOptionPane.showMessageDialog(null, "Cuenta no es de FaceBook", "Error", JOptionPane.ERROR_MESSAGE);
-       }
-       JOptionPane.showMessageDialog(null, "Usuario no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
-       
+
+            if (resultado == true) {
+
+                Comment comentario = new Comment(postID, autor, comment);
+                ((Facebook) usuario).addComment(comentario);
+            }
+            JOptionPane.showMessageDialog(null, "Cuenta no es de FaceBook", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        JOptionPane.showMessageDialog(null, "Usuario no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+
     }
     
     public void profileFrom(String user){
-    SocialClass usuario = buscar(user);
-    
-    if(usuario!=null){
+        SocialClass usuario = buscar(user);
+
+        if (usuario == null) {
+            JOptionPane.showMessageDialog(null, "Usuario no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         usuario.myProfile();
     }
-    JOptionPane.showMessageDialog(null, "Usuario no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
-    }
-    }
+}
 
 
 

@@ -13,7 +13,7 @@ public class ExamenLabMARIACHUNG_UNOSCAR extends JFrame{
      */
     public static void main(String[] args) {
         GUI gui = new GUI();
-        gui.GUI();
+       
     }
     
 }
